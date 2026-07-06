@@ -1,50 +1,43 @@
 import { motion } from "framer-motion";
-import { services } from "./serviceData";
-import ServiceCard from "./ServiceCard";
 
-export default function Services() {
+export default function ServiceCard({ service }) {
   return (
-    <section
-      id="features"
-      className="bg-[#F8F6F1] py-24"
+    <motion.div
+      whileHover={{ scale: 1.04 }}
+      transition={{ duration: 0.3 }}
+      className="overflow-hidden rounded-3xl bg-white shadow-xl"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="overflow-hidden">
+        <img
+          src={service.image}
+          alt={service.title}
+          className="h-72 w-full object-cover transition duration-500 hover:scale-110"
+        />
+      </div>
 
-        <motion.h4
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center uppercase tracking-[6px] text-(--accent)"
-        >
-          Our Signature Services
-        </motion.h4>
+      <div className="p-6">
+        <h3 className="text-2xl font-semibold text-[var(--primary)]">
+          {service.title}
+        </h3>
 
-        <motion.h2
-          initial={{ y: 50 }}
-          whileInView={{ y: 0 }}
-          viewport={{ once: true }}
-          className="mt-3 text-center text-5xl font-bold text-(--primary)"
-        >
-          Relax. Refresh. Rejuvenate.
-        </motion.h2>
-
-        <p className="mx-auto mt-6 max-w-2xl text-center text-gray-600">
-          Discover our curated wellness experiences crafted to renew your
-          body, calm your mind, and restore inner harmony.
+        <p className="mt-3 text-gray-600">
+          {service.description}
         </p>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-5 flex items-center justify-between">
+          <span className="font-semibold text-[var(--accent)]">
+            {service.duration}
+          </span>
 
-          {services.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-            />
-          ))}
-
+          <span className="text-xl font-bold text-[var(--primary)]">
+            {service.price}
+          </span>
         </div>
 
+        <button className="mt-6 w-full rounded-full bg-[var(--primary)] py-3 font-medium text-white transition hover:bg-[var(--accent)] hover:text-black">
+          Book Now
+        </button>
       </div>
-    </section>
+    </motion.div>
   );
 }

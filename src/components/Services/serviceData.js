@@ -15,7 +15,6 @@ export const services = [
     duration: "60 min",
     price: "₹1999",
   },
-
   {
     id: 2,
     image: facial,
@@ -25,7 +24,6 @@ export const services = [
     duration: "45 min",
     price: "₹1499",
   },
-
   {
     id: 3,
     image: steam,
@@ -35,7 +33,6 @@ export const services = [
     duration: "30 min",
     price: "₹999",
   },
-
   {
     id: 4,
     image: body,
@@ -45,7 +42,6 @@ export const services = [
     duration: "75 min",
     price: "₹2199",
   },
-
   {
     id: 5,
     image: aroma,
@@ -55,7 +51,6 @@ export const services = [
     duration: "60 min",
     price: "₹1799",
   },
-
   {
     id: 6,
     image: therapy,
