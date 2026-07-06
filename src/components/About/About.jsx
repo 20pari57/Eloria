@@ -1,133 +1,169 @@
+import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
-import "./About.css";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 
-import { motion } from "framer-motion";
+import "./About.css";
 
-import img1 from "../../assets/images/about/about1.jpg";
-import img2 from "../../assets/images/about/about2.jpg";
-import img3 from "../../assets/images/about/about3.jpg";
-import img4 from "../../assets/images/about/about4.jpg";
-
-const images = [img1, img2, img3, img4];
+import { aboutImages } from "./aboutData";
+import Counter from "./Counter";
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="bg-[#F8F6F1] py-24"
-    >
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="about" className="about-section">
+      <div className="container">
 
-        <div className="text-center mb-16">
+        {/* Heading */}
 
-          <p className="uppercase tracking-[6px] text-[var(--accent)]">
-            About ELORIA
-          </p>
+        <motion.div
+          className="heading"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <p>ABOUT US</p>
 
-          <h2 className="text-5xl font-bold mt-3 text-[var(--primary)]">
-            Where Luxury Meets Wellness
-          </h2>
+          <h2>Where Luxury Meets Wellness</h2>
+        </motion.div>
 
-        </div>
+        {/* Main Content */}
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="about-grid">
 
-          {/* Image Slider */}
+          {/* Left Image Slider */}
 
           <motion.div
+            className="image-side"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: .8 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-
             <Swiper
               modules={[Autoplay, Pagination, EffectFade]}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
               effect="fade"
               loop={true}
-              pagination={{ clickable: true }}
-              className="rounded-3xl overflow-hidden shadow-2xl"
+              autoplay={{
+                delay: 3500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              className="aboutSwiper"
             >
-
-              {images.map((img, index) => (
-
-                <SwiperSlide key={index}>
-
+              {aboutImages.map((item) => (
+                <SwiperSlide key={item.id}>
                   <img
-                    src={img}
-                    alt=""
-                    className="w-full h-[600px] object-cover"
+                    src={item.image}
+                    alt={item.title}
+                    className="slider-image"
                   />
 
+                  <div className="slider-overlay">
+                    <h3>{item.title}</h3>
+
+                    <p>{item.subtitle}</p>
+                  </div>
                 </SwiperSlide>
-
               ))}
-
             </Swiper>
-
           </motion.div>
 
-          {/* Text */}
+          {/* Right Content */}
 
           <motion.div
+            className="content-side"
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: .8 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
+            <span className="sub-title">
+              LUXURY SPA EXPERIENCE
+            </span>
 
-            <h3 className="text-4xl font-bold text-[var(--primary)] mb-8">
-              Experience the Art of Relaxation
+            <h3>
+              Relax Your Mind,
+              <br />
+              Refresh Your Soul.
             </h3>
 
-            <p className="text-gray-600 leading-8 mb-6">
-              At ELORIA, wellness is more than a treatment—it's a journey.
-              Every therapy is thoughtfully crafted to relax your body,
-              refresh your mind, and restore inner harmony in a peaceful,
-              luxurious environment.
+            <p>
+              At ELORIA, we believe wellness is more than just a spa
+              treatment—it is a complete journey toward inner peace,
+              beauty, and relaxation. Every experience is designed to
+              restore harmony between your body, mind, and soul.
             </p>
 
-            <p className="text-gray-600 leading-8 mb-10">
-              Our expert therapists use premium organic products and modern
-              techniques to deliver personalized spa experiences that leave
-              you feeling renewed and revitalized.
+            <p>
+              Our expert therapists combine traditional healing
+              techniques with modern luxury care, using only premium
+              organic products to deliver personalized wellness
+              experiences you'll always remember.
             </p>
 
-            <div className="grid grid-cols-2 gap-5 mb-10">
+            <div className="features">
 
-              <div>✔ Organic Products</div>
+              <div>✔ Premium Organic Products</div>
 
               <div>✔ Certified Therapists</div>
 
-              <div>✔ Premium Ambience</div>
+              <div>✔ Luxury Ambience</div>
 
-              <div>✔ Personalized Care</div>
-
-            </div>
-
-            <div className="flex gap-5">
-
-              <button className="bg-[var(--primary)] text-white px-8 py-4 rounded-full hover:bg-[var(--accent)] hover:text-black transition">
-                Learn More
-              </button>
-
-              <button className="border-2 border-[var(--primary)] text-[var(--primary)] px-8 py-4 rounded-full hover:bg-[var(--primary)] hover:text-white transition">
-                Book Appointment
-              </button>
+              <div>✔ Personalized Treatments</div>
 
             </div>
+
+            <button className="learn-btn">
+              Learn More →
+            </button>
 
           </motion.div>
 
         </div>
+
+        {/* Statistics */}
+
+        <motion.div
+          className="stats"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
+          <Counter
+            end={14}
+            suffix="K+"
+            title="Happy Clients"
+            delay={0}
+          />
+
+          <Counter
+            end={20}
+            suffix="+"
+            title="Years Experience"
+            delay={0.2}
+          />
+
+          <Counter
+            end={98}
+            suffix="%"
+            title="Customer Satisfaction"
+            delay={0.4}
+          />
+
+          <Counter
+            end={25}
+            suffix="+"
+            title="Luxury Treatments"
+            delay={0.6}
+          />
+        </motion.div>
 
       </div>
     </section>

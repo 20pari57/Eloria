@@ -1,8 +1,453 @@
+/* ===========================================
+   ABOUT SECTION
+=========================================== */
+
+.about-section {
+  width: 100%;
+  background: #f8f6f1;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.container {
+  width: 92%;
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* ===========================================
+   HEADING
+=========================================== */
+
+.heading {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.heading p {
+  color: #c7a86b;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.heading h2 {
+  font-size: 3.3rem;
+  color: #1d4d4f;
+  font-weight: 700;
+}
+
+/* ===========================================
+   GRID
+=========================================== */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* ===========================================
+   IMAGE SLIDER
+=========================================== */
+
+.aboutSwiper {
+  width: 100%;
+  height: 620px;
+  border-radius: 35px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+
+  animation: floating 6s ease-in-out infinite;
+}
+
+.slider-image {
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+
+  animation: zoomImage 8s linear infinite;
+}
+
+/* Ken Burns Effect */
+
+@keyframes zoomImage {
+
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.12);
+  }
+
+}
+
+/* Floating */
+
+@keyframes floating {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+/* ===========================================
+   IMAGE OVERLAY
+=========================================== */
+
+.slider-overlay {
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+
+  padding: 45px;
+
+  background: linear-gradient(
+      to top,
+      rgba(0,0,0,.75),
+      rgba(0,0,0,.1),
+      transparent
+  );
+
+  color: white;
+
+}
+
+.slider-overlay h3{
+
+  font-size:2rem;
+
+  margin-bottom:10px;
+
+  font-weight:700;
+
+}
+
+.slider-overlay p{
+
+  font-size:16px;
+
+  opacity:.9;
+
+}
+
+/* ===========================================
+   SWIPER DOTS
+=========================================== */
+
 .swiper-pagination-bullet{
-    background:#fff;
+
+    width:12px;
+    height:12px;
+
+    background:white;
+
     opacity:.8;
+
 }
 
 .swiper-pagination-bullet-active{
+
     background:#C7A86B;
+
+    transform:scale(1.2);
+
+}
+
+/* ===========================================
+   RIGHT CONTENT
+=========================================== */
+
+.sub-title{
+
+  color:#C7A86B;
+
+  letter-spacing:4px;
+
+  font-weight:600;
+
+  text-transform:uppercase;
+
+}
+
+.content-side h3{
+
+  margin:20px 0;
+
+  font-size:3rem;
+
+  line-height:1.2;
+
+  color:#1D4D4F;
+
+}
+
+.content-side p{
+
+  color:#666;
+
+  font-size:17px;
+
+  line-height:1.9;
+
+  margin-bottom:22px;
+
+}
+
+/* ===========================================
+   FEATURES
+=========================================== */
+
+.features{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:18px;
+
+  margin:45px 0;
+
+}
+
+.features div{
+
+  background:white;
+
+  padding:18px;
+
+  border-radius:15px;
+
+  box-shadow:0 10px 20px rgba(0,0,0,.05);
+
+  transition:.4s;
+
+}
+
+.features div:hover{
+
+  transform:translateY(-6px);
+
+  background:#1D4D4F;
+
+  color:white;
+
+}
+
+/* ===========================================
+   BUTTON
+=========================================== */
+
+.learn-btn{
+
+  background:#1D4D4F;
+
+  color:white;
+
+  padding:17px 45px;
+
+  border:none;
+
+  border-radius:50px;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  font-weight:600;
+
+  position:relative;
+
+  overflow:hidden;
+
+  transition:.4s;
+
+}
+
+.learn-btn:hover{
+
+  background:#C7A86B;
+
+  color:black;
+
+  transform:translateY(-5px);
+
+}
+
+.learn-btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-120%;
+
+width:100%;
+
+height:100%;
+
+background:rgba(255,255,255,.25);
+
+transform:skewX(-25deg);
+
+transition:.8s;
+
+}
+
+.learn-btn:hover::before{
+
+left:120%;
+
+}
+
+/* ===========================================
+   STATS
+=========================================== */
+
+.stats{
+
+  margin-top:110px;
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:30px;
+
+}
+
+.stat-box{
+
+  background:white;
+
+  padding:40px;
+
+  border-radius:25px;
+
+  text-align:center;
+
+  box-shadow:0 15px 30px rgba(0,0,0,.08);
+
+  transition:.45s;
+
+}
+
+.stat-box:hover{
+
+  transform:translateY(-12px);
+
+  box-shadow:0 25px 45px rgba(0,0,0,.15);
+
+}
+
+.stat-box h2{
+
+  color:#1D4D4F;
+
+  font-size:3rem;
+
+}
+
+.stat-box p{
+
+  margin-top:12px;
+
+  color:#777;
+
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:992px){
+
+.about-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.aboutSwiper{
+
+height:500px;
+
+}
+
+.slider-image{
+
+height:500px;
+
+}
+
+.stats{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.heading h2{
+
+font-size:2.3rem;
+
+}
+
+.content-side h3{
+
+font-size:2.2rem;
+
+}
+
+.features{
+
+grid-template-columns:1fr;
+
+}
+
+.stats{
+
+grid-template-columns:1fr;
+
+}
+
+.aboutSwiper{
+
+height:400px;
+
+}
+
+.slider-image{
+
+height:400px;
+
+}
+
+.slider-overlay{
+
+padding:25px;
+
+}
+
 }
