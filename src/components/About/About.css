@@ -53,14 +53,26 @@
    IMAGE SLIDER
 =========================================== */
 
+.image-side {
+  width: 100%;
+  max-width: 500px;
+}
+
 .aboutSwiper {
   width: 100%;
   height: 620px;
   border-radius: 35px;
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-
   animation: floating 6s ease-in-out infinite;
+}
+
+.swiper-wrapper {
+  height: 100%;
+}
+
+.swiper-slide {
+  height: 100%;
 }
 
 .slider-image {

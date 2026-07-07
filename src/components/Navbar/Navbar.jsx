@@ -59,7 +59,7 @@ export default function Navbar() {
       //     ? "glass shadow-lg py-2"
       //     : "bg-transparent py-5"
       //   }`}
-className="w-full border-b bg-white"
+      className="w-full border-b bg-white"
     >
 
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-10">
@@ -125,11 +125,25 @@ className="w-full border-b bg-white"
 
         <div className="hidden lg:block">
 
-          <button className="btn">
+         <button
+  className="offer-btn"
+  onClick={() => {
+    const bookingSection = document.querySelector("#booking");
 
-            Book Now
+    if (bookingSection) {
+      bookingSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
+      console.log("Booking section not found");
+    }
+  }}
+>
+  Book Now
+</button>
 
-          </button>
+         
 
         </div>
 

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import CountUp from "react-countup";
+import {  useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
 export default function Counter({
@@ -12,6 +12,27 @@ export default function Counter({
     triggerOnce: true,
     threshold: 0.4,
   });
+
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (inView) {
+      let currentValue = 0;
+      const increment = end / 25; // Animate over 25 steps
+      
+      const timer = setInterval(() => {
+        currentValue += increment;
+        if (currentValue >= end) {
+          setDisplayValue(end);
+          clearInterval(timer);
+        } else {
+          setDisplayValue(Math.floor(currentValue));
+        }
+      }, 100);
+
+      return () => clearInterval(timer);
+    }
+  }, [inView, end]);
 
   return (
     <motion.div
@@ -30,15 +51,7 @@ export default function Counter({
       }}
     >
       <h2>
-        {inView ? (
-          <CountUp
-            start={0}
-            end={end}
-            duration={2.5}
-          />
-        ) : (
-          0
-        )}
+        {displayValue}
         {suffix}
       </h2>
 

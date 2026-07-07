@@ -94,12 +94,21 @@ export default function OfferCard({ offer }) {
       </ul>
 
       {/* Button */}
+<button
+  className="offer-btn"
+  onClick={() => {
+    localStorage.setItem("selectedPackage", offer.title);
 
-      <button className="offer-btn">
+    document
+      .getElementById("booking")
+      ?.scrollIntoView({
+        behavior: "smooth",
+      });
+  }}
+>
+  Book Now
+</button>
 
-        Book Now
-
-      </button>
 
     </motion.div>
   );
