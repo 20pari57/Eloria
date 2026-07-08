@@ -1,0 +1,289 @@
+/* ===========================================
+   OFFER SECTION
+=========================================== */
+
+.offer-section {
+  background: #173d3f;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.offer-container {
+  width: 92%;
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* ===========================================
+   HEADING
+=========================================== */
+
+.offer-heading {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.offer-heading span {
+  color: #d4b06a;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 600;
+}
+
+.offer-heading h2 {
+  margin-top: 15px;
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+.offer-heading p {
+  margin: 20px auto 0;
+  max-width: 700px;
+  color: #d9d9d9;
+  line-height: 1.8;
+  font-size: 17px;
+}
+
+/* ===========================================
+   GRID
+=========================================== */
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+}
+
+/* ===========================================
+   CARD
+=========================================== */
+
+.offer-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 176, 106, 0.3);
+  border-radius: 28px;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.offer-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* ===========================================
+   POPULAR CARD
+=========================================== */
+
+.popular-card {
+  border: 2px solid #d4b06a;
+  transform: scale(1.05);
+}
+
+.popular-card:hover {
+  transform: scale(1.08) translateY(-10px);
+}
+
+/* ===========================================
+   IMAGE
+=========================================== */
+
+.offer-image {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+}
+
+.offer-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.6s;
+}
+
+.offer-card:hover .offer-image img {
+  transform: scale(1.1);
+}
+
+/* ===========================================
+   BADGES
+=========================================== */
+
+.discount-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+  background: #d4b06a;
+  color: #173d3f;
+
+  padding: 8px 16px;
+  border-radius: 30px;
+
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.popular-badge {
+  position: absolute;
+  top: 20px;
+  right: -45px;
+
+  background: #d4b06a;
+  color: #173d3f;
+
+  width: 180px;
+
+  text-align: center;
+
+  padding: 8px 0;
+
+  transform: rotate(45deg);
+
+  font-size: 12px;
+
+  font-weight: bold;
+}
+
+/* ===========================================
+   ICON
+=========================================== */
+
+.offer-icon {
+  width: 70px;
+  height: 70px;
+
+  background: #d4b06a;
+
+  border-radius: 50%;
+
+  margin: -35px auto 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #173d3f;
+
+  font-size: 30px;
+}
+
+/* ===========================================
+   TITLE
+=========================================== */
+
+.offer-card h3 {
+  text-align: center;
+  color: white;
+  font-size: 28px;
+}
+
+/* ===========================================
+   PRICE
+=========================================== */
+
+.price {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.old-price {
+  color: #bfbfbf;
+  text-decoration: line-through;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.new-price {
+  color: #d4b06a;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* ===========================================
+   FEATURES
+=========================================== */
+
+.offer-card ul {
+  list-style: none;
+  padding: 0 35px;
+  margin: 30px 0;
+}
+
+.offer-card li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #ececec;
+
+  margin-bottom: 18px;
+}
+
+.check-icon {
+  color: #d4b06a;
+}
+
+/* ===========================================
+   BUTTON
+=========================================== */
+
+.offer-btn {
+  width: calc(100% - 60px);
+
+  margin: 0 30px 35px;
+
+  padding: 16px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background: #d4b06a;
+
+  color: #173d3f;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.4s;
+}
+
+.offer-btn:hover {
+  background: white;
+  transform: scale(1.03);
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media (max-width: 1100px) {
+
+  .offer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .offer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-heading h2 {
+    font-size: 2.3rem;
+  }
+
+  .offer-image {
+    height: 220px;
+  }
+
+}
