@@ -37,14 +37,16 @@ router.post(
   "/",
   protect,
   admin,
+  serviceValidation,
+  validate,
   upload.single("image"),
   createService
 );
 
 // Update service
-router.put("/:id", protect, admin, serviceValidation, validate, updateService);
+router.put("/:id", protect, admin, serviceValidation, validate, upload.single("image"), updateService);
 
 // Delete service
-router.delete("/:id", protect, admin, serviceValidation, validate, deleteService);
+router.delete("/:id", protect, admin, serviceValidation, validate, upload.single("image"), deleteService);
 
 module.exports = router;

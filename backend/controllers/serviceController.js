@@ -1,120 +1,106 @@
 const Service = require("../models/Service");
+const asyncHandler = require("../utils/asyncHandler");
 
+// ==========================
 // Get All Services
-const getServices = async (req, res) => {
-  try {
-    const services = await Service.find();
+// ==========================
+const getServices = asyncHandler(async (req, res) => {
+  const services = await Service.find();
 
-    res.status(200).json({
-      success: true,
-      count: services.length,
-      services,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
+  res.status(200).json({
+    success: true,
+    count: services.length,
+    services,
+  });
+});
 
+// ==========================
 // Get Single Service
-const getService = async (req, res) => {
-  try {
-    const service = await Service.findById(req.params.id);
+// ==========================
+const getService = asyncHandler(async (req, res, next) => {
+  const service = await Service.findById(req.params.id);
 
-    if (!service) {
-      return res.status(404).json({
-        success: false,
-        message: "Service not found",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      service,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+  if (!service) {
+    const error = new Error("Service not found");
+    error.statusCode = 404;
+    return next(error);
   }
-};
 
+  res.status(200).json({
+    success: true,
+    service,
+  });
+});
+
+// ==========================
 // Create Service
-const createService = async (req, res) => {
-  try {
-    const service = await Service.create(req.body);
+// ==========================
+const createService = asyncHandler(async (req, res) => {
+  const serviceData = {
+    ...req.body,
+  };
 
-    res.status(201).json({
-      success: true,
-      service,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+  // Save uploaded image path (if uploaded)
+  if (req.file) {
+    serviceData.image = `/uploads/services/${req.file.filename}`;
   }
-};
 
+  const service = await Service.create(serviceData);
+
+  res.status(201).json({
+    success: true,
+    message: "Service created successfully",
+    service,
+  });
+});
+
+// ==========================
 // Update Service
-const updateService = async (req, res) => {
-  try {
-    const service = await Service.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+// ==========================
+const updateService = asyncHandler(async (req, res, next) => {
+  const service = await Service.findById(req.params.id);
 
-    if (!service) {
-      return res.status(404).json({
-        success: false,
-        message: "Service not found",
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      service,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+  if (!service) {
+    const error = new Error("Service not found");
+    error.statusCode = 404;
+    return next(error);
   }
-};
 
+  Object.assign(service, req.body);
+
+  // Update image if a new one is uploaded
+  if (req.file) {
+    service.image = `/uploads/services/${req.file.filename}`;
+  }
+
+  await service.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Service updated successfully",
+    service,
+  });
+});
+
+// ==========================
 // Delete Service
-const deleteService = async (req, res) => {
-  try {
-    const service = await Service.findById(req.params.id);
+// ==========================
+const deleteService = asyncHandler(async (req, res, next) => {
+  const service = await Service.findById(req.params.id);
 
-    if (!service) {
-      return res.status(404).json({
-        success: false,
-        message: "Service not found",
-      });
-    }
-
-    await service.deleteOne();
-
-    res.status(200).json({
-      success: true,
-      message: "Service deleted successfully",
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-    });
+  if (!service) {
+    const error = new Error("Service not found");
+    error.statusCode = 404;
+    return next(error);
   }
-};
+
+  await service.deleteOne();
+
+  res.status(200).json({
+    success: true,
+    message: "Service deleted successfully",
+  });
+});
 
 module.exports = {
   getServices,

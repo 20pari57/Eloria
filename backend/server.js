@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const helmet = require("helmet");
 require("dotenv").config();
 
 const connectDB = require("./config/db");
@@ -13,7 +14,8 @@ const therapistRoutes = require("./routes/therapistRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const userRoutes = require("./routes/userRoutes");
-
+const errorMiddleware = require("./middleware/errorMiddleware");
+const limiter = require("./middleware/rateLimiter");
 const startServer = async () => {
   try {
     // Connect Database
@@ -22,10 +24,16 @@ const startServer = async () => {
     const app = express();
 
     // Middlewares
-    app.use(cors());
+    app.use(cors(
+      {
+        origin: process.env.FRONTEND_URL,
+        credentials: true,
+      }
+    ));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
-
+    app.use(helmet());
+    app.use(limiter);
     // Serve Uploaded Images
     app.use(
       "/uploads",
@@ -45,6 +53,9 @@ const startServer = async () => {
     app.use("/api/contact", contactRoutes);
     app.use("/api/dashboard", dashboardRoutes);
     app.use("/api/users", userRoutes);
+
+    // Error Handling Middleware
+    app.use(errorMiddleware);
 
     // 404 Route
     app.use((req, res) => {
